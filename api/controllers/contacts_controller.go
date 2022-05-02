@@ -1,4 +1,4 @@
-package contacts
+package controllers
 
 import "net/http"
 

@@ -1,11 +1,22 @@
 package routes
 
 import (
+	"net/http"
+
 	"github.com/gorilla/mux"
 )
 
+type (
+	Route struct {
+		URI     string
+		Method  string
+		Handler func(http.ResponseWriter, *http.Request)
+	}
+)
+
 func Load() []Route {
-	routes := allRoutes
+	routes := userRoutes
+	routes = append(routes, postRoutes...)
 	return routes
 }
 
