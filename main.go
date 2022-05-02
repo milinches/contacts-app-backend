@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import "github.com/milinches/contacts-app-backend/api"
 
 func main() {
-	fmt.Println("contacts app backend")
+	api.Run()
 }
