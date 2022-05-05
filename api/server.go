@@ -5,15 +5,11 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/joho/godotenv"
 	"github.com/milinches/contacts-app-backend/api/router"
 )
 
 func Run() {
-	if err := godotenv.Load(".env"); err != nil {
-		log.Fatal("error loading .env file...")
-	}
-
+	// source .env
 	port := os.Getenv("PORT")
 	log.Println("Starting server...")
 
