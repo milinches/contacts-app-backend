@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/milinches/contacts-app-backend/api/router"
-	"github.com/milinches/contacts-app-backend/api/auto"
+	"github.com/milinches/contacts-app-backend/auto"
 )
 
 // source .env

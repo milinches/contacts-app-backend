@@ -1,18 +1,21 @@
 package models
 
 import (
-	"gorm.io/gorm"
+	"time"
 )
 
 type (
 	User struct {
-		gorm.Model
-		Username  string    `gorm:"type:varchar(20);unique;not null" json:"username"`
-		Email     string    `gorm:"type:varchar(40);unique;not null" json:"email"`
-		FirstName string    `gorm:"type:varchar(40);not null" json:"first_name"`
-		LastName  string    `gorm:"type:varchar(40);not null" json:"last_name"`
-		OtherName string    `gorm:"type:varchar(40)" json:"other_name"`
-		Password  string    `gorm:"type:varchar(30)" json:"password"`
+		ID        uint      `gorm:"primaryKey;autoIncrement" json:"id"`
+		Username  string    `gorm:"type:string;unique;not null" json:"username"`
+		Email     string    `gorm:"type:string;unique;not null" json:"email"`
+		FirstName string    `gorm:"type:string;not null" json:"first_name"`
+		LastName  string    `gorm:"type:string;not null" json:"last_name"`
+		OtherName string    `gorm:"type:string" json:"other_name"`
+		Password  string    `gorm:"type:string" json:"password"`
+		CreatedAt time.Time `json:"created_at"`
+		UpdatedAt time.Time `json:"updated_at"`
+		DeletedAt time.Time `gorm:"index" json:"deleted_at"`
 		Contacts  []Contact `json:"contacts,omitempty"`
 	}
 )

@@ -16,11 +16,8 @@ func Load() {
 
 	log.Println("successfully connected to the database...")
 
+	// err = db.Debug().AutoMigrate(&models.User{} ,&models.Contact{})
 	err = db.Debug().AutoMigrate(&models.User{})
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = db.Debug().AutoMigrate(&models.Contact{})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -30,6 +27,16 @@ func Load() {
 		if err != nil {
 			log.Fatal(err)
 		}
+
 		console.Prettier(user)
 	}
+
+	// for _, c := range contacts {
+	// 	err = db.Debug().Model(&models.Contact{}).Create(&c).Error
+	// 	if err != nil {
+	// 		log.Fatal(err)
+	// 	}
+
+	// 	console.Prettier(c)
+	// }
 }
