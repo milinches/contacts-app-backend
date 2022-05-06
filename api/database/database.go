@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	_ "github.com/lib/pq"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -15,7 +16,7 @@ var (
 	password = os.Getenv("PASSWORD")
 	dbName   = os.Getenv("NAME")
 	dbPort   = os.Getenv("DB_PORT")
-	dbURI    = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, password, dbName, dbPort)
+	dbURI    = fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, dbPort, user, password, dbName)
 )
 
 // Creates a connection to the db which returns the (db instance or an error).

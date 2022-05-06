@@ -6,11 +6,15 @@ import (
 	"os"
 
 	"github.com/milinches/contacts-app-backend/api/router"
+	"github.com/milinches/contacts-app-backend/api/auto"
 )
 
+// source .env
+var port = os.Getenv("PORT")
+
+// Starts a new server
 func Run() {
-	// source .env
-	port := os.Getenv("PORT")
+	auto.Load()
 	log.Println("Starting server...")
 
 	r := router.NEW()
