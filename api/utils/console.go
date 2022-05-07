@@ -1,4 +1,4 @@
-package console
+package utils
 
 import (
 	"encoding/json"

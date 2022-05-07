@@ -21,7 +21,7 @@ var (
 
 // Creates a connection to the db which returns the (db instance or an error).
 func Connect() (*gorm.DB, error) {
-	db, err := gorm.Open(postgres.Open(dbURI), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(dbURI), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: true})
 	if err != nil {
 		return nil, err
 	}

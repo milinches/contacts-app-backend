@@ -5,38 +5,45 @@ import (
 
 	"github.com/milinches/contacts-app-backend/api/database"
 	"github.com/milinches/contacts-app-backend/api/models"
-	"github.com/milinches/contacts-app-backend/api/utils/console"
+	"github.com/milinches/contacts-app-backend/api/utils"
 )
 
 func Load() {
 	db, err := database.Connect()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("error loading the db: %v", err)
 	}
 
 	log.Println("successfully connected to the database...")
 
-	// err = db.Debug().AutoMigrate(&models.User{} ,&models.Contact{})
-	err = db.Debug().AutoMigrate(&models.User{})
-	if err != nil {
-		log.Fatal(err)
+	if err = db.Debug().Migrator().DropTable(&models.User{}, &models.Contact{}); err != nil {
+		log.Fatalf("error dropping table: %v", err)
 	}
+
+	if err = db.Debug().AutoMigrate(&models.User{}, &models.Contact{}); err != nil {
+		log.Fatalf("error migrating table: %v", err)
+	}
+
+	// if err = db.Migrator().CreateConstraint(&models.User{}, "Contacts"); err != nil {
+	// 	log.Fatalf("error adding a foreign key: %v", err)
+	// }
+	// if err = db.Migrator().CreateConstraint(&models.User{}, "fk_users_contacts"); err != nil {
+	// 	log.Fatalf("error adding a foreign key: %v", err)
+	// }
 
 	for _, user := range users {
-		err = db.Debug().Model(&models.User{}).Create(&user).Error
-		if err != nil {
-			log.Fatal(err)
+		if err = db.Debug().Model(&models.User{}).Create(&user).Error; err != nil {
+			log.Fatalf("cannot create table: %v",err)
 		}
 
-		console.Prettier(user)
+		utils.Prettier(user)
 	}
 
-	// for _, c := range contacts {
-	// 	err = db.Debug().Model(&models.Contact{}).Create(&c).Error
-	// 	if err != nil {
-	// 		log.Fatal(err)
-	// 	}
+	for _, c := range contacts {
+		if err = db.Debug().Model(&models.Contact{}).Create(&c).Error; err != nil {
+			log.Fatalf("cannot create table: %v",err)
+		}
 
-	// 	console.Prettier(c)
-	// }
+		utils.Prettier(c)
+	}
 }
