@@ -24,16 +24,20 @@ func Load() {
 		log.Fatalf("error migrating table: %v", err)
 	}
 
-	// if err = db.Migrator().CreateConstraint(&models.User{}, "Contacts"); err != nil {
-	// 	log.Fatalf("error adding a foreign key: %v", err)
-	// }
-	// if err = db.Migrator().CreateConstraint(&models.User{}, "fk_users_contacts"); err != nil {
-	// 	log.Fatalf("error adding a foreign key: %v", err)
-	// }
+	if err = db.Migrator().CreateConstraint(&models.User{}, "Contacts"); err != nil {
+		log.Fatalf("error adding a foreign key: %v", err)
+	}
+	if err = db.Migrator().CreateConstraint(&models.User{}, "fk_users_contacts"); err != nil {
+		log.Fatalf("error adding a foreign key: %v", err)
+	}
+
+	if err = db.Model(&models.User{}).Association("Contact").Error; err != nil {
+		log.Fatalf("association error: %v", err)
+	}
 
 	for _, user := range users {
 		if err = db.Debug().Model(&models.User{}).Create(&user).Error; err != nil {
-			log.Fatalf("cannot create table: %v",err)
+			log.Fatalf("cannot create table: %v", err)
 		}
 
 		utils.Prettier(user)
@@ -41,7 +45,7 @@ func Load() {
 
 	for _, c := range contacts {
 		if err = db.Debug().Model(&models.Contact{}).Create(&c).Error; err != nil {
-			log.Fatalf("cannot create table: %v",err)
+			log.Fatalf("cannot create table: %v", err)
 		}
 
 		utils.Prettier(c)

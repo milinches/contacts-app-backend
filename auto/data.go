@@ -17,11 +17,6 @@ var contacts = []models.Contact{
 		Name:        "Midorimatsu",
 		Address:     "Acapella 16, @mail.com in coza repulic",
 		PhoneNumber: []string{"081678911", "+23451652388"},
-	},
-	{
-		Email:       "ilysm@mail.com",
-		Name:        "Midorimatsu",
-		Address:     "Acapella 16, @mail.com in coza repulic",
-		PhoneNumber: []string{"081678911", "+23451652388"},
+		UserID: 1,
 	},
 }

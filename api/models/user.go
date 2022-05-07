@@ -2,8 +2,6 @@ package models
 
 import (
 	"time"
-
-	"github.com/milinches/contacts-app-backend/api/utils"
 )
 
 type (
@@ -16,15 +14,10 @@ type (
 		CreatedAt time.Time `json:"created_at"`
 		UpdatedAt time.Time `json:"updated_at"`
 		DeletedAt time.Time `gorm:"index" json:"deleted_at"`
-		Contacts  []Contact `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"contacts"`
+		Contact   []Contact `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"contact,omitempty"`
 	}
 )
 
-func BeforeSave(u *User) error {
-	hashedPassword, err := utils.HashPassword(u.Password)
-	if err != nil {
-		return err
-	}
-	u.Password = string(hashedPassword)
-	return nil
+func (u *User) TableName() string {
+	return "user"
 }

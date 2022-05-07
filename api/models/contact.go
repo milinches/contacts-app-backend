@@ -16,7 +16,10 @@ type (
 		CreatedAt   time.Time      `json:"created_at"`
 		UpdatedAt   time.Time      `json:"updated_at"`
 		DeletedAt   time.Time      `gorm:"index" json:"deleted_at"`
-		// User        User           `gorm:"foreignKey:UserID" json:"user"`
-		UserID      uint           `gorm:"not null" json:"user_id"`
+		UserID      uint           `json:"user_id"`
 	}
 )
+
+func (u *Contact) TableName() string {
+	return "contact"
+}
