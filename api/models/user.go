@@ -18,7 +18,7 @@ type (
 		CreatedAt time.Time `json:"created_at"`
 		UpdatedAt time.Time `json:"updated_at"`
 		DeletedAt time.Time `gorm:"index" json:"deleted_at"`
-		Contact   []Contact `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"contact,omitempty"`
+		Contact   []*Contact `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;" json:"contact,omitempty"`
 	}
 )
 

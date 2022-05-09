@@ -2,21 +2,23 @@ package auto
 
 import "github.com/milinches/contacts-app-backend/api/models"
 
-var users = []models.User{
-	{
-		Email:     "made@mail.com",
-		FirstName: "John",
-		LastName:  "Inu",
-		Password:  "1233345",
-	},
-}
+var (
+	users = []models.User{
+		{
+			Email:     "john@mail.com",
+			FirstName: "John",
+			LastName:  "Inu",
+			Password:  "neverhaveiever",
+		},
+	}
 
-var contacts = []models.Contact{
-	{
-		Email:       "ilysm@mail.com",
-		Name:        "Midorimatsu",
-		Address:     "Acapella 16, @mail.com in coza repulic",
-		PhoneNumber: []string{"081678911", "+23451652388"},
-		UserID: 1,
-	},
-}
+	contacts = []models.Contact{
+		{
+			Email:       "joma@mail.com",
+			Name:        "Joma Tatsumi",
+			Address:     "Acapella 16, @mail.com in coza repulic",
+			PhoneNumber: []string{"081678911", "+23451652388", "08167875645"},
+			UserID:      1,
+		},
+	}
+)
