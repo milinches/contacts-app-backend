@@ -1,7 +1,11 @@
 package models
 
 import (
+	"errors"
 	"time"
+
+	"github.com/milinches/contacts-app-backend/api/utils"
+	"gorm.io/gorm"
 )
 
 type (
@@ -18,6 +22,17 @@ type (
 	}
 )
 
+// Added Hooks — Gorm hooks are function that are called before or after creation
+
 func (u *User) TableName() string {
 	return "user"
+}
+
+func (u *User) BeforeSave(tx *gorm.DB) (err error) {
+	hashedPassword, err := utils.HashPassword(u.Password)
+	if err != nil {
+		return errors.New("error hashing password")
+	}
+	u.Password = string(hashedPassword)
+	return
 }
