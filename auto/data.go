@@ -18,6 +18,7 @@ var (
 			Name:        "Joma Tatsumi",
 			Address:     "Acapella 16, @mail.com in coza repulic",
 			PhoneNumber: []string{"081678911", "+23451652388", "08167875645"},
+			Type:        []string{"Personal"},
 			UserID:      1,
 		},
 	}

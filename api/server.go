@@ -12,7 +12,7 @@ import (
 // source .env
 var port = os.Getenv("PORT")
 
-// Starts a new server
+// Run Starts a new server
 func Run() {
 	auto.Load()
 	log.Println("Starting server...")

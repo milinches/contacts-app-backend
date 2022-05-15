@@ -19,7 +19,7 @@ var (
 	dbURI    = fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, dbPort, user, password, dbName)
 )
 
-// Creates a connection to the db which returns the (db instance or an error).
+// Connect Creates a connection to the db which returns the (db instance or an error).
 func Connect() (*gorm.DB, error) {
 	db, err := gorm.Open(postgres.Open(dbURI), &gorm.Config{})
 	if err != nil {
