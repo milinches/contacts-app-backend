@@ -2,6 +2,8 @@ package models
 
 import (
 	"errors"
+	"html"
+	"strings"
 	"time"
 
 	"github.com/milinches/contacts-app-backend/api/utils"
@@ -35,4 +37,13 @@ func (u *User) BeforeSave(tx *gorm.DB) (err error) {
 	}
 	u.Password = string(hashedPassword)
 	return
+}
+
+func (user *User) Prepare() {
+	user.ID = 0
+	user.Email = html.EscapeString(strings.TrimSpace(user.Email))
+	user.FirstName = html.EscapeString(strings.TrimSpace(user.FirstName))
+	user.LastName = html.EscapeString(strings.TrimSpace(user.LastName))
+	user.CreatedAt = time.Now()
+	user.UpdatedAt = time.Now()
 }

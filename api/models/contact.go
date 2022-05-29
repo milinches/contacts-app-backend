@@ -1,6 +1,8 @@
 package models
 
 import (
+	"html"
+	"strings"
 	"time"
 
 	"github.com/lib/pq"
@@ -25,4 +27,15 @@ type (
 
 func (u *Contact) TableName() string {
 	return "contact"
+}
+
+func (contact *Contact) Prepare() {
+	contact.ID = 0
+	contact.Email = html.EscapeString(strings.TrimSpace(contact.Email))
+	contact.Name = html.EscapeString(strings.TrimSpace(contact.Name))
+	contact.Address = html.EscapeString(strings.TrimSpace(contact.Address))
+	contact.PhoneNumber = []string{}
+	contact.Type = []string{}
+	contact.CreatedAt = time.Now()
+	contact.UpdatedAt = time.Now()
 }
