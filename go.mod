@@ -4,6 +4,7 @@ go 1.18
 
 require (
 	github.com/badoux/checkmail v1.2.1
+	github.com/golang-jwt/jwt/v4 v4.4.1
 	github.com/gorilla/mux v1.8.0
 	github.com/lib/pq v1.10.5
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
